@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dice Game</title>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f3f3f3;
+      text-align: center;
+    }
+    
+    h1 {
+      margin-top: 50px;
+      color: #333;
+    }
+    
+    .dice {
+      display: inline-block;
+      margin: 20px;
+      width: 150px;
+      height: 150px;
+      border-radius: 10px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    #rollButton {
+      margin-top: 50px;
+      padding: 10px 20px;
+      font-size: 24px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <h1>Dice Game</h1>
+  <img class="dice" id="dice1" src="dice1.png" alt="Dice 1">
+  <img class="dice" id="dice2" src="dice1.png" alt="Dice 2">
+  <button id="rollButton">Roll Dice</button>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var dice1 = document.getElementById('dice1');
+      var dice2 = document.getElementById('dice2');
+      var rollButton = document.getElementById('rollButton');
+
+      rollButton.addEventListener('click', function() {
+        rollButton.disabled = true;
+        rollButton.textContent = 'Rolling...';
+
+        var value1 = rollDice();
+        var value2 = rollDice();
+
+        dice1.src = 'dice' + value1 + '.png';
+        dice1.alt = 'Dice ' + value1;
+        dice2.src = 'dice' + value2 + '.png';
+        dice2.alt = 'Dice ' + value2;
+
+        setTimeout(function() {
+          rollButton.disabled = false;
+          rollButton.textContent = 'Roll Dice';
+        }, 1000);
+      });
+
+      function rollDice() {
+        return Math.floor(Math.random() * 6) + 1;
+      }
+    });
+  </script>
+</body>
+</html>
